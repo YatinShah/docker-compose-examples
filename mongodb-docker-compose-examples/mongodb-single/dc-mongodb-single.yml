@@ -7,8 +7,8 @@ services:
     hostname: mongodb
     volumes:
       - ./mongodb/initdb.d/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-      - mongodb-data:/data/db/
-      - mongodb-log:/var/log/mongodb/
+      - ./data:/data/db/
+      - ./data/logs:/var/log/mongodb/
     env_file:
       - .env
     environment:
@@ -37,13 +37,13 @@ services:
     depends_on:
       - mongodb
 
-volumes:
-  mongodb-data:
-    driver: local
-    name: mongo-data
-  mongodb-log:
-    driver: local
-    name: mongo-log
+# volumes:
+#   mongodb-data:
+#     driver: local
+#     name: mongo-data
+#   mongodb-log:
+#     driver: local
+#     name: mongo-log
 
 networks:
   mongodb_network:
